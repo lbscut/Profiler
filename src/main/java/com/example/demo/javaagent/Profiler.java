@@ -42,19 +42,13 @@ class MethodInfo{
 	}
 	@Override
 	public String toString() {
-		return String.format("%1$-35s",className) 
-				+ String.format("%1$-15s",methodName)  
-				+ String.format("%1$-15s",""+useTime)   
-				+ String.format("%1$-15s",""+invokeCount);
+		return String.format("%-35.35s%-15.15s%-15d%-15d",className, methodName, useTime, invokeCount);
 	}
 	
 	public void end(){
 		useTime = useTime + (new Date().getTime() - lastStartTime);
 		if(methodName.equals("main")){
-			System.out.println(String.format("%1$-35s","className") 
-				+ String.format("%1$-15s","methodName")  
-				+ String.format("%1$-15s","useTime")   
-				+ String.format("%1$-15s","invokeCount"));
+			System.out.println(String.format("%-35.35s%-15.15s%-15.15s%-15.15s","className", "methodName", "useTime", "invokeCount"));
 			List<MethodInfo> list = new ArrayList<>();
 			list.addAll(Profiler.map.values());
 			list.sort(new Comparator<MethodInfo>(){
